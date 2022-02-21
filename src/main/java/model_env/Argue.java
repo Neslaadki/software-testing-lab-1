@@ -5,13 +5,11 @@ import java.util.*;
 public class Argue {
     private Problem problem;
     private Entity[] participants;
-    private Date date;
     private String[] entityArguePositions;
 
-    public Argue(Problem problem, Entity[] participants, Date date) {
+    public Argue(Problem problem, Entity[] participants) {
         this.problem = problem;
         this.participants = participants;
-        this.date = date;
     }
 
     public String[] getEntityArguePositions() {
@@ -41,40 +39,39 @@ public class Argue {
         this.participants = participants;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
 
 
     public void do_argue(){
         setEntityArguePositions();
-        HashMap<String, Integer> countMap = countIntem(entityArguePositions);
+            if (entityArguePositions.length != 0){
+                HashMap<String, Integer> countMap = countIntem(entityArguePositions);
+                int maxVal = 0;
+                String solution = "";
+                boolean has_second_value = false;
 
-        int maxVal = 0;
-        String solution = "";
+                for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+                    String key = entry.getKey();
+                    Integer value = entry.getValue();
 
-        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-
-            if (value > maxVal){
-                maxVal = value;
-                solution = key;
+                    if (value == maxVal) has_second_value = true;
+                    if (value > maxVal){
+                        maxVal = value;
+                        solution = key;
+                        has_second_value = false;
+                    }
+                }
+                if (!has_second_value) set_argue_result(solution);
+                //else System.out.println("Спор не был решен, так как равные группы имеют разные позиции");
             }
-        }
-        set_argue_result(solution);
-
     }
 
     public void set_argue_result(String solution){
         problem.setSolving(true);
         problem.setSolution(solution);
     }
+
+
+
 
     public HashMap<String, Integer> countIntem(String[] array ) {
 
