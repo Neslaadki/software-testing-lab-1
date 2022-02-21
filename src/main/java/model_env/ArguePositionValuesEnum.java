@@ -5,7 +5,7 @@ public enum ArguePositionValuesEnum {
 
     private String russianName;
 
-    ArguePositionValuesEnum(String russianName){
+    ArguePositionValuesEnum(String russianName) {
         this.russianName = russianName;
     }
 

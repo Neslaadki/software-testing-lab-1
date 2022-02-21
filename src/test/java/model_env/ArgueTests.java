@@ -1,4 +1,5 @@
 package model_env;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,21 +78,20 @@ public class ArgueTests {
     @Test
     public void set_and_get_problem_is_correct() {
         Problem problem = new Problem("Извечный спор", "Спор существ о смысле жизни");
-        Argue argue = new Argue(problem, new Entity[]{entity1,entity2});
+        Argue argue = new Argue(problem, new Entity[]{entity1, entity2});
         argue.setProblem(problem);
-        assertEquals(argue.getProblem(),problem);
+        assertEquals(argue.getProblem(), problem);
     }
 
     @DisplayName("Проверка корректости функции установки и получения значения участников")
     @Test
     public void set_and_get_participants_is_correct() {
-        Entity[] empty_entities = new Entity[] {entity1,entity2,entity3};
+        Entity[] empty_entities = new Entity[]{entity1, entity2, entity3};
         Problem problem = new Problem("Извечный спор", "Спор существ о смысле жизни");
-        Argue argue = new Argue(problem, new Entity[]{entity1,entity2});
+        Argue argue = new Argue(problem, new Entity[]{entity1, entity2});
         argue.setParticipants(empty_entities);
-        assertEquals(argue.getParticipants(),empty_entities);
+        assertEquals(argue.getParticipants(), empty_entities);
     }
-
 
 
 }
