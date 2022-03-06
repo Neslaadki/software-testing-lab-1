@@ -40,47 +40,46 @@ public class Argue {
     }
 
 
-
-    public void do_argue(){
+    public void do_argue() {
+        System.out.println("Спор начался между " + participants.length + " участниками");
         setEntityArguePositions();
-            if (entityArguePositions.length != 0){
-                HashMap<String, Integer> countMap = countIntem(entityArguePositions);
-                int maxVal = 0;
-                String solution = "";
-                boolean has_second_value = false;
+        if (entityArguePositions.length != 0) {
+            HashMap<String, Integer> countMap = countIntem(entityArguePositions);
+            int maxVal = 0;
+            String solution = "";
+            boolean has_second_value = false;
 
-                for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
-                    String key = entry.getKey();
-                    Integer value = entry.getValue();
+            for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
 
-                    if (value == maxVal) has_second_value = true;
-                    if (value > maxVal){
-                        maxVal = value;
-                        solution = key;
-                        has_second_value = false;
-                    }
+                if (value == maxVal) has_second_value = true;
+                if (value > maxVal) {
+                    maxVal = value;
+                    solution = key;
+                    has_second_value = false;
                 }
-                if (!has_second_value) set_argue_result(solution);
-                //else System.out.println("Спор не был решен, так как равные группы имеют разные позиции");
             }
+            if (!has_second_value) set_argue_result(solution);
+        }
+        if(problem.isSolving()) System.out.println("Спор решен с результатом: " + problem.getSolution());
+        else System.out.println("Спор не решен, так как не выявлен явный победитель");
     }
 
-    public void set_argue_result(String solution){
+    public void set_argue_result(String solution) {
         problem.setSolving(true);
         problem.setSolution(solution);
     }
 
 
-
-
-    public HashMap<String, Integer> countIntem(String[] array ) {
-
+    public HashMap<String, Integer> countIntem(String[] array) {
+        System.out.println("Подсчет голосов..");
         Arrays.sort(array);
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         Integer count = 0;
         String first = array[0];
-        for( int counter = 0; counter < array.length; counter++ ) {
-            if(first.hashCode() == array[counter].hashCode()) {
+        for (int counter = 0; counter < array.length; counter++) {
+            if (first.hashCode() == array[counter].hashCode()) {
                 count = count + 1;
             } else {
                 map.put(first, count);

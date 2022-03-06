@@ -1,7 +1,9 @@
 package model_env;
 
 public enum ArguePositionValuesEnum {
-    IN_GAMING("В_ИГРЕ"), IN_SLEEPING("ВО_СНЕ"), IN_EATING("В_ЕДЕ");
+    IN_GAMING("В_ИГРЕ"),
+    IN_SLEEPING("ВО_СНЕ"),
+    IN_EATING("В_ЕДЕ");
 
     private String russianName;
 
@@ -12,7 +14,6 @@ public enum ArguePositionValuesEnum {
     public String getRussianName() {
         return russianName;
     }
-
     public void setRussianName(String russianName) {
         this.russianName = russianName;
     }
